@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BounceCount : MonoBehaviour
+public class BulletBounceCount : MonoBehaviour
 {
     public int MaxBounces;
     public string WallKaTag;
@@ -22,13 +22,14 @@ public class BounceCount : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        MaxBounces -= 1;
         if (collision.collider.tag == WallKaTag)
         {
-            if (MaxBounces < 0)
+            if (MaxBounces < 1)
             {
                 Destroy(gameObject);
             }
-            MaxBounces -= 1;
+           
         }
     }
     public void shoot(int Speed, Vector2 dire)

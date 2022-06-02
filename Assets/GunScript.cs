@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public GameObject Bullet;
+    public GameObject Bullet,ExplosiveBullet;
     public float firerate;
-    public int Speed;
+    public int Speed,ExplosiveSpeed;
     public float MinAngle, MaxAngle;
+    public float BulletSplitRange;
     public bool canshoot = true;
     public Transform Target;
-    public Transform Barrel;
+    public Transform Barrel,Barrel1,Barrel2;
     public Quaternion rot;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,20 +47,45 @@ public class GunScript : MonoBehaviour
         {
             if (canshoot)
             {
-                StartCoroutine(shoot());
+                StartCoroutine(shoot(1));
                 canshoot = false;
             }
         }
     }
 
-    IEnumerator shoot()
+    IEnumerator shoot(int bullettype)
     {
-        var ga = Instantiate(Bullet, transform.position, Quaternion.identity);
+        switch (bullettype)
+        {
+            case (1):
+                var ga = Instantiate(Bullet, Barrel.transform.position, Quaternion.identity);
+                ga.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
+                // ga.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+                yield return new WaitForSeconds(firerate);
+                canshoot = true;
+                break;
+            case (2):
+                var TempBull1 = Instantiate(Bullet, Barrel.position, Quaternion.identity);
+                TempBull1.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
+                var TempBull2 = Instantiate(Bullet, Barrel1.position, Quaternion.identity);
+                TempBull2.GetComponent<Rigidbody2D>().AddForce((Barrel1.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
+                var TempBull3 = Instantiate(Bullet, Barrel2.position, Quaternion.identity);
+                TempBull3.GetComponent<Rigidbody2D>().AddForce((Barrel2.position - transform.position) * Speed, ForceMode2D.Impulse);
+                // ga.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+                yield return new WaitForSeconds(firerate);
+                canshoot = true;
+                break;
+            case (3):var ExpBull = Instantiate(ExplosiveBullet,Barrel.position,Quaternion.identity);
+                ExpBull.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * ExplosiveSpeed, ForceMode2D.Impulse);
+                yield return new WaitForSeconds(firerate);
+                canshoot = true;
+                break;
 
-        ga.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
-        ga.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
-        yield return new WaitForSeconds(firerate);
-        canshoot = true;
-
+        }
+       /* if (bullettype == 1)
+        {
+           
+        }
+       */
     }
 }

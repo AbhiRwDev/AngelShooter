@@ -10,9 +10,10 @@ public class GunScript : MonoBehaviour
     public float MinAngle, MaxAngle;
     public float BulletSplitRange;
     public bool canshoot = true;
-    public Transform Target;
+   [SerializeField] private Transform Target;
     public Transform Barrel,Barrel1,Barrel2;
-    public Quaternion rot;
+    
+   [SerializeField] private int BulletTp;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class GunScript : MonoBehaviour
         Debug.Log(euler.z);
 
 
-        rot = transform.rotation;
+       
         Vector3 dir = Target.transform.position - transform.position;
         euler.z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         //transform.right = dir;
@@ -47,7 +48,7 @@ public class GunScript : MonoBehaviour
         {
             if (canshoot)
             {
-                StartCoroutine(shoot(1));
+                StartCoroutine(shoot(BulletTp));
                 canshoot = false;
             }
         }

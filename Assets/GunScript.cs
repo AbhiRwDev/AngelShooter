@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public GameObject Bullet,ExplosiveBullet;
+    [SerializeField] private GameObject Bullet,ExplosiveBullet;
     public float firerate;
     public int Speed,ExplosiveSpeed;
-    public float MinAngle, MaxAngle;
-    public float BulletSplitRange;
+    [SerializeField] private float MinAngle, MaxAngle;
+    [SerializeField] private float BulletSplitRange;
     public bool canshoot = true;
-   [SerializeField] private Transform Target;
-    public Transform Barrel,Barrel1,Barrel2;
+    [SerializeField] private Transform Target;
+    [SerializeField] private Transform Barrel,Barrel1,Barrel2;
     
-   [SerializeField] private int BulletTp;
+    public int[] BulletMag;
+    private int CurrentBull;
+    private Maguimanager magman;
+   
     
     // Start is called before the first frame update
     void Start()
     {
-
+        magman = GameObject.FindGameObjectWithTag("MagManager").GetComponent<Maguimanager>();
+       
+        
     }
 
     // Update is called once per frame
@@ -29,7 +34,7 @@ public class GunScript : MonoBehaviour
         {
             euler.z = euler.z - 360;
         }
-        Debug.Log(euler.z);
+       
 
 
        
@@ -42,14 +47,22 @@ public class GunScript : MonoBehaviour
 
 
 
-
-
-        if (Input.GetMouseButton(0))
+        if (CurrentBull <= BulletMag.Length - 1)
         {
-            if (canshoot)
+
+            if (Input.GetMouseButton(0))
             {
-                StartCoroutine(shoot(BulletTp));
-                canshoot = false;
+                if (canshoot)
+                {
+
+                    
+                    StartCoroutine(shoot(BulletMag[CurrentBull]));
+                    CurrentBull += 1;
+                   
+                    magman.RemoveBullet();
+                    canshoot = false;
+
+                }
             }
         }
     }
@@ -58,14 +71,14 @@ public class GunScript : MonoBehaviour
     {
         switch (bullettype)
         {
-            case (1):
+            case (0):
                 var ga = Instantiate(Bullet, Barrel.transform.position, Quaternion.identity);
                 ga.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
                 // ga.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
                 yield return new WaitForSeconds(firerate);
                 canshoot = true;
                 break;
-            case (2):
+            case (1):
                 var TempBull1 = Instantiate(Bullet, Barrel.position, Quaternion.identity);
                 TempBull1.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * Speed, ForceMode2D.Impulse);
                 var TempBull2 = Instantiate(Bullet, Barrel1.position, Quaternion.identity);
@@ -76,7 +89,7 @@ public class GunScript : MonoBehaviour
                 yield return new WaitForSeconds(firerate);
                 canshoot = true;
                 break;
-            case (3):var ExpBull = Instantiate(ExplosiveBullet,Barrel.position,Quaternion.identity);
+            case (2):var ExpBull = Instantiate(ExplosiveBullet,Barrel.position,Quaternion.identity);
                 ExpBull.GetComponent<Rigidbody2D>().AddForce((Barrel.transform.position - transform.position) * ExplosiveSpeed, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(firerate);
                 canshoot = true;
@@ -88,5 +101,7 @@ public class GunScript : MonoBehaviour
            
         }
        */
+       
     }
+   
 }

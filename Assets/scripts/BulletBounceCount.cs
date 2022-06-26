@@ -32,23 +32,7 @@ public class BulletBounceCount : MonoBehaviour
            
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Goblin" && gameObject.CompareTag("ExpBull"))
-        {
-
-            collision.gameObject.GetComponent<Gcollider>().Death();
-            
-            Destroy(gameObject);
-
-        }
-        else if (collision.tag == "Goblin")
-        {
-            collision.gameObject.GetComponent<Gcollider>().Death();
-          
-
-        }
-    }
+   
     public void shoot(int Speed, Vector2 dire)
     {
         gameObject.GetComponent<Rigidbody2D>().AddForce(dire.normalized * Speed * Time.fixedDeltaTime, ForceMode2D.Impulse);

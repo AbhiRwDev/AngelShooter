@@ -12,6 +12,7 @@ public class GoblinController : MonoBehaviour
     public Vector3 temp;
     public Quaternion rot;
     public Animator main;
+    public GameObject textscore;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,4 +49,28 @@ public class GoblinController : MonoBehaviour
         transform.rotation = rot;
         
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ExpBull"))
+        {
+
+            gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
+            GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
+            gameObject.GetComponent<GoblinController>().ShouldMove = false;
+            Destroy(collision.gameObject);
+            Destroy(gameObject, 1.8f);
+        }
+        else if (collision.CompareTag("Bullet"))
+        {
+
+            gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
+            GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
+            gameObject.GetComponent<GoblinController>().ShouldMove = false;
+            Destroy(gameObject, 1.8f);
+
+        }
+    }
+   
 }

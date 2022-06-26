@@ -21,10 +21,5 @@ public class Gcollider : MonoBehaviour
     }
     public void Death()
     {
-       MainBody.SetInteger("State",2);
-        GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().RemEnemies -= 1;
-        GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
-        Main.GetComponent<GoblinController>().ShouldMove = false;
-        Destroy(Main, 1.8f);
     }
 }

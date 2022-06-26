@@ -47,7 +47,7 @@ public class GunScript : MonoBehaviour
 
 
 
-        if (CurrentBull <= BulletMag.Length - 1)
+      /*  if (CurrentBull <= BulletMag.Length - 1)
         {
 
             if (Input.GetMouseButton(0))
@@ -65,6 +65,7 @@ public class GunScript : MonoBehaviour
                 }
             }
         }
+      */
     }
 
     IEnumerator shoot(int bullettype)
@@ -102,6 +103,14 @@ public class GunScript : MonoBehaviour
         }
        */
        
+    }
+    public void shoot()
+    {
+        StartCoroutine(shoot(BulletMag[CurrentBull]));
+        CurrentBull += 1;
+
+        magman.RemoveBullet();
+        canshoot = false;
     }
    
 }

@@ -12,6 +12,8 @@ TagManager:
   - Gbodies
   - Gamemanager
   - ExpBull
+  - gbs
+  - Bullet
   layers:
   - Default
   - TransparentFX

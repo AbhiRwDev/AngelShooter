@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Gamemanager : MonoBehaviour
 {
     public int score;
@@ -13,10 +13,13 @@ public class Gamemanager : MonoBehaviour
     public GameObject[] stars;
     public int StarTh,Goblinworth;
     private BulletBounceCount[] bnos;
+    private GameObject[] gb;
     public int rbu;
+    public Text scoretxt;
     // Start is called before the first frame update
     void Start()
     {
+        Screen.SetResolution(1920,1080,FullScreenMode.FullScreenWindow);
         gs = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>();
         goblins = GameObject.FindGameObjectsWithTag("Gbodies");
         RemEnemies = goblins.Length;
@@ -29,6 +32,7 @@ public class Gamemanager : MonoBehaviour
     void Update()
     {
         bnos = GameObject.FindObjectsOfType<BulletBounceCount>();
+        gb = GameObject.FindGameObjectsWithTag("gbs");
         /* int i = 0;
          foreach (var item in bnos)
          {
@@ -37,6 +41,11 @@ public class Gamemanager : MonoBehaviour
          }
         */
         rbu = bnos.Length;
+        RemEnemies = gb.Length;
+        if(scoretxt!=null)
+        {
+           scoretxt.text= score.ToString();
+        }
         
         if(RemEnemies<=0&&!haswon)
         {

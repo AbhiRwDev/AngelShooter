@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        Screen.SetResolution(1920,1080,FullScreenMode.ExclusiveFullScreen);
         foreach (var item in Levels)
         {
             item.SetActive(false);
@@ -18,10 +19,13 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
-        CurrentLevel = PlayerPrefs.GetInt("gg");
-        
-       
-        Loadlevel(CurrentLevel);
+        if (SceneManager.GetActiveScene().name == "game")
+        {
+            CurrentLevel = PlayerPrefs.GetInt("gg");
+
+
+            Loadlevel(CurrentLevel);
+        }
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             NextLevel();
         }
+       if(lvltext!=null)
         lvltext.text = (CurrentLevel + 1).ToString();
     }
     
@@ -60,6 +65,17 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-   
+    public void setlevel(int lvl)
+    {
+        CurrentLevel = lvl;
+        PlayerPrefs.SetInt("gg", CurrentLevel);
+        SceneManager.LoadScene("game");
+
+
+    }
+   public void openscene()
+    {
+        SceneManager.LoadScene("ui");
+    }
 
 }

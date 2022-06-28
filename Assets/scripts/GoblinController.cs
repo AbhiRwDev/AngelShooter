@@ -13,6 +13,7 @@ public class GoblinController : MonoBehaviour
     public Quaternion rot;
     public Animator main;
     public GameObject textscore;
+    public bool isdead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,25 +52,43 @@ public class GoblinController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("ExpBull"))
+        /*if (collision.CompareTag("ExpBull"))
         {
 
             gameObject.GetComponent<Animator>().SetInteger("State", 2);
             Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
             gameObject.GetComponent<GoblinController>().ShouldMove = false;
-            Destroy(collision.gameObject);
+           
             Destroy(gameObject, 1.8f);
         }
-        else if (collision.CompareTag("Bullet"))
+        */
+         if (collision.CompareTag("Bullet")&&!isdead)
         {
-
+            isdead = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Animator>().SetInteger("State", 2);
             Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
+            GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().RemEnemies-=1;
             gameObject.GetComponent<GoblinController>().ShouldMove = false;
             Destroy(gameObject, 1.8f);
 
+        }
+    }
+    public void death()
+    {
+        if (!isdead)
+        {
+            isdead = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
+            GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
+            GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().RemEnemies -= 1;
+            gameObject.GetComponent<GoblinController>().ShouldMove = false;
+
+            Destroy(gameObject, 1.8f);
         }
     }
    

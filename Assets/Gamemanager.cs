@@ -6,14 +6,14 @@ public class Gamemanager : MonoBehaviour
 {
     public int score;
     public GunScript gs;
-    public GameObject[] goblins;
+  
     [SerializeField] GameObject Winpanel,Losepanel;
     [SerializeField]public int RemEnemies,RemBullets;
     private bool haswon=false;
     public GameObject[] stars;
     public int StarTh,Goblinworth;
     private BulletBounceCount[] bnos;
-    private GameObject[] gb;
+    private GoblinController[] gb;
     public int rbu;
     public Text scoretxt;
     // Start is called before the first frame update
@@ -21,8 +21,8 @@ public class Gamemanager : MonoBehaviour
     {
         Screen.SetResolution(1920,1080,FullScreenMode.FullScreenWindow);
         gs = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>();
-        goblins = GameObject.FindGameObjectsWithTag("Gbodies");
-        RemEnemies = goblins.Length;
+        gb = GameObject.FindObjectsOfType<GoblinController>();
+        RemEnemies = gb.Length;
         RemBullets = gs.BulletMag.Length;
        
 
@@ -32,7 +32,7 @@ public class Gamemanager : MonoBehaviour
     void Update()
     {
         bnos = GameObject.FindObjectsOfType<BulletBounceCount>();
-        gb = GameObject.FindGameObjectsWithTag("gbs");
+        
         /* int i = 0;
          foreach (var item in bnos)
          {
@@ -41,28 +41,41 @@ public class Gamemanager : MonoBehaviour
          }
         */
         rbu = bnos.Length;
-        RemEnemies = gb.Length;
+        
         if(scoretxt!=null)
         {
            scoretxt.text= score.ToString();
         }
         
-        if(RemEnemies<=0&&!haswon)
+        
+    }
+    private void LateUpdate()
+    {
+        if (RemEnemies <= 0 && !haswon)
         {
             gs.canshoot = false;
 
-            RemBullets = -gs.CurrentBull +gs.BulletMag.Length ;
+            RemBullets = -gs.CurrentBull + gs.BulletMag.Length;
             score = score + RemBullets * 3000;
-            
-            Invoke("win",2f);
             haswon = true;
-
-        }else if(gs.CurrentBull>=gs.BulletMag.Length&&RemEnemies>0&&rbu<1)
-        {
-            gs.canshoot = false;
-            Invoke("lose", 2f);
-            lose();
+            Invoke("win", 2f);
             
+
+        }
+        else if (RemEnemies>0&& !haswon)
+        {
+            if (gs.BulletMag.Length-gs.CurrentBull<=0)
+            {
+                if (rbu<=0)
+                {
+                    gs.canshoot = false;
+                    haswon = true;
+                    Invoke("lose", 2f);
+
+
+                }
+            }
+
         }
     }
     public void win()

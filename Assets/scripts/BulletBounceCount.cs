@@ -27,12 +27,45 @@ public class BulletBounceCount : MonoBehaviour
         {
             if (MaxBounces < 1)
             {
+                if (gameObject.CompareTag("ExpBull"))
+                {
+                    Collider2D[] colli = Physics2D.OverlapCircleAll(transform.position,4);
+                    foreach (var item in colli)
+                    {
+                        if(item.CompareTag("gbs"))
+                        {
+                            item.GetComponent<BoxCollider2D>().enabled = false;
+                            item.GetComponent<GoblinController>().death();
+                        }
+                    }
+                    Destroy(gameObject);
+                }
                 Destroy(gameObject);
             }
            
         }
+        
     }
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (gameObject.CompareTag("ExpBull"))
+        {
+            if (collision.CompareTag("gbs"))
+            {
+                Collider2D[] colli = Physics2D.OverlapCircleAll(transform.position, 4);
+                foreach (var item in colli)
+                {
+                    if (item.CompareTag("gbs"))
+                    {
+                        item.GetComponent<BoxCollider2D>().enabled = false;
+                        item.GetComponent<GoblinController>().death();
+                    }
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
     public void shoot(int Speed, Vector2 dire)
     {
         gameObject.GetComponent<Rigidbody2D>().AddForce(dire.normalized * Speed * Time.fixedDeltaTime, ForceMode2D.Impulse);

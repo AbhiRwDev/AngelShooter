@@ -20,6 +20,7 @@ public class Gamemanager : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(1920,1080,FullScreenMode.FullScreenWindow);
+        Application.targetFrameRate = 60;
         gs = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>();
         gb = GameObject.FindObjectsOfType<GoblinController>();
         RemEnemies = gb.Length;

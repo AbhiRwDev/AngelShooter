@@ -12,7 +12,7 @@ public class GunScript : MonoBehaviour
     public bool canshoot = true;
     [SerializeField] private Transform Target;
     [SerializeField] private Transform Barrel,Barrel1,Barrel2;
-    
+    [SerializeField] private GameObject muzzelflash;
     public int[] BulletMag;
     public int CurrentBull;
     private Maguimanager magman;
@@ -108,6 +108,8 @@ public class GunScript : MonoBehaviour
     {
         StartCoroutine(shoot(BulletMag[CurrentBull]));
         CurrentBull += 1;
+        Instantiate(muzzelflash, Barrel1.transform.position,Quaternion.identity);;
+       
 
         magman.RemoveBullet();
         canshoot = false;

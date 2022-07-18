@@ -7,7 +7,7 @@ public class BulletBounceCount : MonoBehaviour
     public int MaxBounces;
     public string WallKaTag;
     public int MaxSpeed;
-    public GameObject expeff;
+    public GameObject expeff,flasheff;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,7 @@ public class BulletBounceCount : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         MaxBounces -= 1;
+        Instantiate(flasheff, transform.position, Quaternion.identity);
         if (collision.collider.tag == WallKaTag)
         {
             if (MaxBounces < 1)

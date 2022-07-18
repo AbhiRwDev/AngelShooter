@@ -14,6 +14,8 @@ public class GoblinController : MonoBehaviour
     public Animator main;
     public GameObject textscore;
     public bool isdead = false;
+    public GameObject particleeff;
+    public GameObject[] bldspls;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +74,12 @@ public class GoblinController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().RemEnemies-=1;
             gameObject.GetComponent<GoblinController>().ShouldMove = false;
-            Destroy(gameObject, 1.8f);
+            //instantiate particles
+            Instantiate(bldspls[Random.Range(0, 3)], new Vector3(transform.position.x, transform.position.y +0.5f, transform.position.z), Quaternion.Euler(0, 0, Random.Range(0, 360)));
+
+            Instantiate(particleeff, new Vector3(transform.position.x,transform.position.y+3,transform.position.z), Quaternion.Euler(-90, 0, 0));
+            cameracon.Shake(0.1f, 0.3f);
+            Destroy(gameObject);
 
         }
     }
@@ -87,8 +94,12 @@ public class GoblinController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().Incscore();
             GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<Gamemanager>().RemEnemies -= 1;
             gameObject.GetComponent<GoblinController>().ShouldMove = false;
-
-            Destroy(gameObject, 1.8f);
+            //instantiate particles
+            
+            Instantiate(particleeff, new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), Quaternion.Euler(-90, 0, 0));
+            cameracon.Shake(0.1f,0.3f);
+            Instantiate(bldspls[Random.Range(0,3)], new Vector3(transform.position.x, transform.position.y+0.5f  , transform.position.z), Quaternion.Euler(0, 0, Random.Range(0,360)));
+            Destroy(gameObject);
         }
     }
    

@@ -7,6 +7,7 @@ public class BulletBounceCount : MonoBehaviour
     public int MaxBounces;
     public string WallKaTag;
     public int MaxSpeed;
+    public GameObject expeff;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class BulletBounceCount : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = MaxSpeed * (gameObject.GetComponent<Rigidbody2D>().velocity.normalized);
 
+       
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +40,7 @@ public class BulletBounceCount : MonoBehaviour
                             item.GetComponent<GoblinController>().death();
                         }
                     }
+                    Instantiate(expeff, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
                 Destroy(gameObject);
@@ -61,6 +64,7 @@ public class BulletBounceCount : MonoBehaviour
                         item.GetComponent<GoblinController>().death();
                     }
                 }
+                Instantiate(expeff, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

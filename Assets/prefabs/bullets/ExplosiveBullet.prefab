@@ -220,7 +220,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.9716981, g: 0.86999875, b: 0.6554379, a: 1}
+  m_Color: {r: 0, g: 0.40928867, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -260,7 +260,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 6
   m_LinearDrag: 1
-  m_AngularDrag: 2.13
+  m_AngularDrag: 1.74
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: f12a63d9541e2ee448341b6fbd2307d0, type: 2}
   m_Interpolate: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxBounces: 3
   WallKaTag: Wall
-  MaxSpeed: 8
+  MaxSpeed: 10
   expeff: {fileID: 6384206328525541980, guid: ebf3acf02b798b340ab4953c60d5fa5c, type: 3}
   flasheff: {fileID: 3931516522977174208, guid: d96838fd1449ea442be93a71d546e7f0, type: 3}
 --- !u!1 &5911833599935117078
@@ -367,7 +367,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.20555648
+        value: 0.2118431
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -376,7 +376,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5768131
-        value: 0.15022978
+        value: 0.21312651
         inSlope: -0.37362525
         outSlope: -0.37362525
         tangentMode: 0
@@ -385,7 +385,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.78315485
-        value: 0.1079064
+        value: 0.17080313
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -393,8 +393,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.9832402
-        value: 0.10062893
+        time: 0.9916325
+        value: 0.13836391
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -407,7 +407,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.2216981, g: 1, b: 0.99196666, a: 0.9490196}
-      key1: {r: 0.84822184, g: 0.5803922, b: 1, a: 0.7058824}
+      key1: {r: 0.84822184, g: 0.5803922, b: 1, a: 0.07058824}
       key2: {r: 1, g: 0, b: 0.92144823, a: 0.20784314}
       key3: {r: 0, g: 0, b: 0, a: 0.12156863}
       key4: {r: 0, g: 0, b: 0, a: 0.050980393}
@@ -423,7 +423,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 57247
       atime2: 17540
       atime3: 39321
       atime4: 55512
@@ -490,8 +490,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.885
-  m_Color: {r: 0.21751513, g: 0.83640766, b: 0.9811321, a: 1}
-  m_Intensity: 2.03
+  m_Color: {r: 0, g: 0.7952334, b: 0.9811321, a: 1}
+  m_Intensity: 1.1
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 00000000

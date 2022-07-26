@@ -13,6 +13,7 @@ public class Maguimanager : MonoBehaviour
     void Start()
     {
         gun = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>();
+        bulletSprites = transform.GetComponentsInChildren<Image>();
         MagUpdate();
     }
 
@@ -23,6 +24,7 @@ public class Maguimanager : MonoBehaviour
     }
     public void MagUpdate()
     {
+        
         for (int i = 0; i < gun.BulletMag.Length ; i++)
         {
            

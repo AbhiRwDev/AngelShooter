@@ -15,7 +15,7 @@ public class Gamemanager : MonoBehaviour
     private BulletBounceCount[] bnos;
     private GoblinController[] gb;
     public int rbu;
-    public Text scoretxt;
+    public Text scoretxt,ingscore;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +43,11 @@ public class Gamemanager : MonoBehaviour
         */
         rbu = bnos.Length;
         
-        if(scoretxt!=null)
+        if(scoretxt!=null&&ingscore!=null)
         {
            scoretxt.text= score.ToString();
+            ingscore.text = score.ToString();
+
         }
         
         
@@ -59,6 +61,7 @@ public class Gamemanager : MonoBehaviour
             RemBullets = -gs.CurrentBull + gs.BulletMag.Length;
             score = score + RemBullets * 3000;
             haswon = true;
+            ingscore.enabled = false;
             Invoke("win", 2f);
             
 

@@ -106,6 +106,7 @@ public class GunScript : MonoBehaviour
     }
     public void shoot()
     {
+
         StartCoroutine(shoot(BulletMag[CurrentBull]));
         CurrentBull += 1;
         Instantiate(muzzelflash, Barrel1.transform.position,Quaternion.identity);;

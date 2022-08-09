@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class soundmanager : MonoBehaviour
 {
+    public AudioSource bounce, shot, ui, audiosw,zombiedes,blast;
     // Start is called before the first frame update
-    void Start()
+    public void bouncesf()
     {
-        
+        bounce.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void shootsf()
     {
-        
+        shot.Play();
+    }
+
+    public void uisf()
+    {
+        ui.Play();
+    }
+
+    public void audiosf()
+    {
+        audiosw.Play();
+    }
+
+    public void zombieexp()
+    {
+        zombiedes.Play();
+    }
+
+    public void explo()
+    {
+        blast.Play();
     }
 }

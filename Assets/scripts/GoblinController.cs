@@ -16,10 +16,12 @@ public class GoblinController : MonoBehaviour
     public bool isdead = false;
     public GameObject particleeff;
     public GameObject[] bldspls;
+
+    private soundmanager sm;
     // Start is called before the first frame update
     void Start()
     {
-       
+        sm = GameObject.FindGameObjectWithTag("Soundsystem").GetComponent<soundmanager>();
     }
 
     // Update is called once per frame
@@ -68,6 +70,7 @@ public class GoblinController : MonoBehaviour
          if (collision.CompareTag("Bullet")&&!isdead)
         {
             isdead = true;
+            sm.zombieexp();
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Animator>().SetInteger("State", 2);
             Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);
@@ -88,6 +91,7 @@ public class GoblinController : MonoBehaviour
         if (!isdead)
         {
             isdead = true;
+            sm.zombieexp();
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Animator>().SetInteger("State", 2);
             Instantiate(gameObject.GetComponent<GoblinController>().textscore, new Vector3(transform.position.x, transform.position.y + 4, textscore.transform.position.z), Quaternion.identity);

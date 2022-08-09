@@ -8,9 +8,12 @@ public class Crossheir : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector3 _direction;
     public float _moveSpeed = 10f;
+
+    public soundmanager sm;
     // Use this for initialization
     void Start()
     {
+        sm = GameObject.FindGameObjectWithTag("Soundsystem").GetComponent<soundmanager>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -32,6 +35,7 @@ public class Crossheir : MonoBehaviour
             {
                 _rb.velocity = Vector2.zero;
                 GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>().shoot();
+                sm.shootsf();
             }
         }
     }

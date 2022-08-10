@@ -15,6 +15,7 @@ TagManager:
   - gbs
   - Bullet
   - Soundsystem
+  - LEVELMAN
   layers:
   - Default
   - TransparentFX

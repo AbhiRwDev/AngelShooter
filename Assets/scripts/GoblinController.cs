@@ -31,7 +31,7 @@ public class GoblinController : MonoBehaviour
         if(ShouldMove)
         {
             main.SetInteger("State",1);
-            Debug.Log(transform.position.x - rightside.position.x);
+            
             if(transform.position.x-leftside.position.x<=1)
             {
                 Speed = Mathf.Abs(Speed);

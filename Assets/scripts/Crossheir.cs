@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Crossheir : MonoBehaviour
 {
@@ -8,8 +10,10 @@ public class Crossheir : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector3 _direction;
     public float _moveSpeed = 10f;
-
+    public int noofshots;
     public soundmanager sm;
+
+    
     // Use this for initialization
     void Start()
     {
@@ -35,8 +39,97 @@ public class Crossheir : MonoBehaviour
             {
                 _rb.velocity = Vector2.zero;
                 GameObject.FindGameObjectWithTag("Gun").GetComponent<GunScript>().shoot();
+                noofshots++;
                 sm.shootsf();
             }
         }
+
+        if (GameObject.FindGameObjectWithTag("LEVELMAN").GetComponent<LevelManager>().CurrentLevel == 49&& noofshots>100)
+        {
+            Instantiate(canv, transform.position, quaternion.identity);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public GameObject canv;
 }

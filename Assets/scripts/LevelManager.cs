@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Screen.SetResolution(1920,1080,FullScreenMode.ExclusiveFullScreen);
+        if(SceneManager.GetActiveScene().name=="game")Screen.SetResolution(1920,1080,FullScreenMode.ExclusiveFullScreen);
         foreach (var item in Levels)
         {
             item.SetActive(false);

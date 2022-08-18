@@ -1545,7 +1545,6 @@ ParticleSystem:
     - sprite: {fileID: 4747603982587487147, guid: 7dcd2988f1630fa4e8a820feebf9ddf1, type: 3}
     - sprite: {fileID: 4180674436303666631, guid: 7dcd2988f1630fa4e8a820feebf9ddf1, type: 3}
     - sprite: {fileID: -5957437699967840487, guid: 7dcd2988f1630fa4e8a820feebf9ddf1, type: 3}
-    - sprite: {fileID: 7730305736550087788, guid: 7dcd2988f1630fa4e8a820feebf9ddf1, type: 3}
     - sprite: {fileID: 2293269904804704617, guid: 7dcd2988f1630fa4e8a820feebf9ddf1, type: 3}
     flipU: 0
     flipV: 0
@@ -5540,7 +5539,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2
+    maxNumParticles: 1
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5916,7 +5915,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 3
+        scalar: 1
         minScalar: 30
         maxCurve:
           serializedVersion: 2

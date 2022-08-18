@@ -8,9 +8,11 @@ public class LevelManager : MonoBehaviour
     public GameObject[] Levels;
    public int CurrentLevel;
     [SerializeField] Text lvltext;
+    public int unlockedLvls;
     // Start is called before the first frame update
     private void Awake()
     {
+    
         if(SceneManager.GetActiveScene().name=="game")Screen.SetResolution(1920,1080,FullScreenMode.ExclusiveFullScreen);
         foreach (var item in Levels)
         {
@@ -43,7 +45,13 @@ public class LevelManager : MonoBehaviour
     {
        
         Levels[Lvl].SetActive(true);
-       
+
+        if (PlayerPrefs.GetInt("unLvls") < CurrentLevel)
+        {
+            unlockedLvls = CurrentLevel;
+            PlayerPrefs.SetInt("unLvls", unlockedLvls);
+        }
+
 
     }
     public void NextLevel()
